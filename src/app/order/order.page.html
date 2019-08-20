@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>order</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    {{CUPP_cup}}
+<!-- Displaying your cuppacino if it is selected -->
+<div *ngIf="CUPP">
+    <p>
+      {{CUPP_cup}}
+    </p>
+  </div>
+  <!-- Displaying americano if it is selected -->
+  <div *ngIf="AMER">
+      <p>
+        {{AMER_cup}} 
+      </p>
+    </div>
+</ion-content>

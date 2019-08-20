@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary" style="text-align: center">
-    <ion-title>
+    <ion-title id="tempGrid3">
       
       COFFEE MACHINE
     </ion-title>
@@ -23,35 +23,42 @@
             </ion-col>
           </ion-row>
       <ion-row>
-        <ion-col (click)="yourCoffee('CUPPICCINO R 38.00')+yourPrices(38)">
-          <img src="assets/CUPPICCINO.jpg">
-          CUPPICCINO
+        <ion-col (click)="yourCuppacino('CUPPICCINO\n')+CuppacinoPrice(38)">
+          <img src="assets/CUPPICCINO.jpg"><br>
+          CUPPICCINO 
+          <p class="price">R 38.00</p>
         </ion-col>
-        <ion-col (click)="yourCoffee('AMERICANO R 8.00')+yourPrices(8)">
-          <img src="assets/AMERICANO.jpg">
+        <ion-col (click)="yourAmericano('AMERICANO\n')+AmericanoPrice(8)">
+          <img src="assets/AMERICANO.jpg"><br>
           AMERICANO
+          <p class="price">R 8.00</p>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col (click)="yourCoffee('ESPRESSO R 20.00')+yourPrices(20)">
-          <img src="assets/ESPRESSO.jpeg">
+        <ion-col (click)="yourEspresso('ESPRESSO\n')+EspressoPrice(20)">
+          <img src="assets/ESPRESSO.jpeg"><br>
           ESPRESSO
+          <p class="price">R 20.00</p>
         </ion-col>
-        <ion-col (click)="yourCoffee('MACCHIATO R 33.00')+yourPrices(33)">
-          <img src="assets/MACCHIATO.jpg">
+        <ion-col (click)="yourMacchiato('MACCHIATO\n')+MacchiatoPrice(33)">
+          <img src="assets/MACCHIATO.jpg"><br>
           MACCHIATO
+          <p class="price">R 33.00</p>
         </ion-col>
       </ion-row>
+      
       <ion-row>
-        <ion-col (click)="yourCoffee('MOCHA R 28.00')+yourPrices(28)">
-          <img src="assets/MOCHA.jpg">
-         MOCHA
-        </ion-col>
-        <ion-col (click)="yourCoffee('LATTE R 30.00')+yourPrices(30)">
-          <img src="assets/LATTE.jpg">
-          LATTE
-        </ion-col>
-      </ion-row>
+          <ion-col (click)="yourMocha('MOCHA\n')+MochaPrice(28)">
+              <img src="assets/MOCHA.jpg"><br>
+              MOCHA
+            <p class="price">R 28.00</p>
+          </ion-col>
+          <ion-col (click)="yourLatte('LATTE\n')+LattePrice(30)">
+              <img src="assets/LATTE.jpg"><br>
+            LATTE
+            <p class="price">R 30.00</p>
+          </ion-col>
+        </ion-row>
       </ion-grid>
 
       <!-- <button class="open-button" onclick="openForm()">Open Form</button> -->
@@ -61,44 +68,177 @@
 -------------------------------------------------
     <h3>YOUR ORDERS</h3>
 -------------------------------------------------
-    <P>Coffee: {{coffee}}  </P><br>
-    <P>Total Price: R {{prices}} </P><br>
+    <h2 class="item-text-wrap">Coffee</h2>
+    <!-- Displaying your cuppacino if it is selected -->
+    <div *ngIf="CUPP">
+        <ion-item *ngIf="Cuppacino>0">
+            <ion-label >{{CUPP_cup}}</ion-label>
+            <ion-button (click)="CuppacinoAdd(1)"><b>+</b></ion-button>
+            {{Cuppacino}}
+            <ion-button (click)="CuppacinoSub(1)"><b>-</b></ion-button>
+        </ion-item>
+      </div>
+      <!-- Displaying americano if it is selected -->
+      <div *ngIf="AMER">
+        <ion-item *ngIf="Americano>0">
+          <ion-label>{{AMER_cup}}</ion-label>
+              <ion-button (click)="AmericanoAdd(1)"><b>+</b></ion-button>
+              {{Americano}}
+              <ion-button (click)="AmericanoSub(1)"><b>-</b></ion-button>
+            </ion-item>
+        </div>
+      <!-- Displaying your macchiato if it is selected -->
+    <div *ngIf="MAC">
+      <ion-item *ngIf="Macchiato>0">
+        <ion-label>{{MAC_cup}}</ion-label>
+            <ion-button (click)="MacchiatoAdd(1)"><b>+</b></ion-button>
+            {{Macchiato}}
+            <ion-button (click)="MacchiatoSub(1)"><b>-</b></ion-button>
+          </ion-item>
+      </div>
+    <!-- Displaying your espresso if it is selected -->
+    <div *ngIf="ESP">
+      <ion-item *ngIf="Espresso>0">
+        <ion-label>{{ESP_cup}}</ion-label>
+            <ion-button (click)="EspressoAdd(1)"><b>+</b></ion-button>
+            {{Espresso}}
+            <ion-button (click)="EspressoSub(1)"><b>-</b></ion-button>
+    </ion-item>
+      </div>
+    <!-- Displaying your mocha if it is selected -->
+    <div *ngIf="MOC">
+      <ion-item *ngIf="Mocha>0">
+        <ion-label>{{MOC_cup}}</ion-label>
+            <ion-button (click)="MochaAdd(1)"><b>+</b></ion-button>
+            {{Mocha}}
+            <ion-button (click)="MochaSub(1)"><b>-</b></ion-button>
+        </ion-item>
+      </div>
+    <!-- Displaying your latte if it is selected -->
+    <div *ngIf="LAT">
+      <ion-item *ngIf="Latte>0">
+          <ion-label>{{LAT_cup}}</ion-label>
+            <ion-button (click)="LatteAdd(1)"><b>+</b></ion-button>
+            {{Latte}}
+            <ion-button (click)="LatteSub(1)"><b>-</b></ion-button>
+          </ion-item>
+      </div>
+    
    
     <p>*****  Customise your coffee  *****</p>
-   {{added}}
+   
     <ion-grid id="tempGrid">
+        
+        <ion-item>
+            <ion-label >Cream(R 4/ g)</ion-label>
+            <ion-button (click)="CreamAdd(1)"><b>+</b></ion-button>
+                     {{Cream}}
+                      <ion-button (click)="CreamSub(1)"><b>-</b></ion-button>
+        </ion-item>
+        <ion-item>
+            <ion-label>Chocolate(R 7/g)</ion-label>
+            <ion-button (click)="ChocolateAdd(1)"><b>+</b></ion-button>
+                     {{Chocolate}}
+                      <ion-button (click)="ChocolateSub(1)"><b>-</b></ion-button>
+        </ion-item>
+     
       <ion-row>
-        <ion-col (click)="addedItem('Milk R 4.00')+yourPrices(4)">
-            <img src="assets/MILK.jpg">
-            MILK    
-        </ion-col>
-        <ion-col (click)="addedItem('Foam R 7.00')+yourPrices(7)">
-            <img src="assets/FOAM.jpg">
-            FOAM
-          </ion-col>
-          <ion-col (click)="addedItem('Chocolate R 10.00')+yourPrices(10)">
-              <img src="assets/CHOC.jpg">
-              CHOC
-            </ion-col>
-      </ion-row>
-      <ion-row>
         <ion-col>
-            <ion-button (click)="closeForm()">Edit</ion-button>
+            <ion-button class="btn" (click)="closeForm()">Edit</ion-button>
         </ion-col>
+       
         <ion-col>
-            <ion-button (click)="cancel()">Cancel</ion-button>
+                <ion-button class="btn"(click)=" openOrder()+closeForm()">Done</ion-button>
         </ion-col>
-        <ion-col>
-            <ion-col>
-                <ion-button (click)="print()+closeForm()">Done</ion-button>
-            </ion-col>
-        </ion-col>
-      </ion-row>
+      </ion-row> 
     </ion-grid>
     
   </form>
 </div>
-   
+ <!--Recript  -->
+ <div class="form-popup ion-padding"  id="myOrder">
+    <form action="/action_page.php" class="form-container" >
+  -------------------------------------------------
+        <h3>YOUR RECEIPT</h3>
+  -------------------------------------------------
+     
+      <!-- Displaying your cuppacino if it is selected -->
+      <div *ngIf="CUPP">
+          <ion-item *ngIf="Cuppacino>0">
+              <ion-label>{{CUPP_cup}} </ion-label>
+              {{CUPPprice}}*{{Cuppacino}} :R {{CUPPprice*Cuppacino}}.00
+          </ion-item>
+        </div>
+        <!-- Displaying americano if it is selected -->
+        <div *ngIf="AMER">
+            <ion-item *ngIf="Americano>0">
+                <ion-label>
+              {{AMER_cup}}</ion-label>
+              {{AMERprice}}*{{Americano}} :R {{AMERprice*Americano}}.00
+            </ion-item>
+          </div>
+        <!-- Displaying your macchiato if it is selected -->
+      <div *ngIf="MAC">
+          <ion-item *ngIf="Macchiato>0">
+              <ion-label>{{MAC_cup}}</ion-label>
+              {{MACprice}}*{{Macchiato}} :R {{MACprice*Macchiato}}.00
+          </ion-item>
+        </div>
+      <!-- Displaying your espresso if it is selected -->
+      <div *ngIf="ESP">
+          <ion-item *ngIf="Espresso>0">
+            <ion-label>{{ESP_cup}}</ion-label>
+              {{ESPprice}}*{{Espresso}}: R {{ESPprice*Espresso}}.00
+            </ion-item>
+        </div>
+      <!-- Displaying your mocha if it is selected -->
+      <div *ngIf="MOC">
+          <ion-item *ngIf="Mocha>0">
+              <ion-label>{{MOC_cup}}</ion-label>
+              {{MOCprice}} *{{Mocha}} :R {{MOCprice*Mocha}}.00
+        </ion-item>
+        </div>
+      <!-- Displaying your latte if it is selected -->
+      <div *ngIf="LAT">
+          <ion-item *ngIf="Latte>0">
+              <ion-label>{{LAT_cup}}</ion-label>
+              {{LATprice}}*{{Latte}} :R {{LATprice*Latte}}.00
+          </ion-item>
+        </div>
+     
+     
+      <ion-grid>
+          
+          <ion-item *ngIf="Cream>0">
+              <ion-label >Cream(R 4/ g)</ion-label>
+              {{CREprice}}*{{Cream}}: R {{CREprice*Cream}}.00
+          </ion-item>
+          <ion-item *ngIf="Chocolate>0">
+              <ion-label>Chocolate(R 7/g)</ion-label>
+              {{CHOCprice}}*{{Chocolate}}: R {{CHOCprice*Chocolate}}.00
+          </ion-item>
+          <br>
+          <ion-item>
+              <ion-label>Total</ion-label>
+               R {{(CUPPprice*Cuppacino)+(AMERprice*Americano)+(MACprice*Macchiato)+(ESPprice*Espresso)+
+                (MOCprice*Mocha)+(LATprice*Latte)+(CREprice*Cream)+(CHOCprice*Chocolate)}}.00
+          </ion-item>
+        
+        <ion-row id="tempGrid2">
+          <ion-col>
+              <ion-button class="btn"(click)=" openForm()+closeForm2()">Edit</ion-button>
+          </ion-col>
+         
+              <ion-col>
+                 
+                  <ion-button class="btn" (click)=" print()">Print</ion-button>
+              </ion-col>
+          
+        </ion-row> 
+      </ion-grid>
+      
+    </form>
+  </div>
       
   </div>
 </ion-content>
